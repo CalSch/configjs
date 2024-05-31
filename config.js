@@ -264,5 +264,5 @@ function updateChoice(name) {
  */
 function updateLabel(name) {
 	let prop = configProperties[name];
-	prop.element.innerText = text;
+	prop.element.innerText = `${name}: ${prop.value}`;
 }
