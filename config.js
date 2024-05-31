@@ -163,6 +163,7 @@ function addChoice(name,onchange,value,options) {
 
 	configContainer.appendChild(label);
 	configContainer.appendChild(el);
+	addLineBreak();
 	
 	let prop = {
 		name,
