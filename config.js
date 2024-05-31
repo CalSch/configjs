@@ -140,6 +140,43 @@ function addBool(name,onchange,value) {
 }
 
 /**
+ * Add a choice config element
+ * @param {string} name property name
+ * @param {(ev:Event)=>void} onchange onChange callback
+ * @param {number} value initial value
+ */
+function addChoice(name,onchange,value,options) {
+	let el = document.createElement("select");
+	el.onchange = onchange;
+	el.name = name;
+
+	let label = document.createElement("label");
+	label.setAttribute("for",name);
+	label.innerText=`${name}: `;
+
+	for (let i in options) {
+		let opt = document.createElement("option");
+		opt.value = i;
+		opt.innerText = options[i];
+		el.appendChild(opt);
+	}
+
+	configContainer.appendChild(label);
+	configContainer.appendChild(el);
+	
+	let prop = {
+		name,
+		onchange,
+		value,
+		options,
+		type: "choice",
+		element: el
+	}
+	configProperties[name]=prop;
+	updateChoice(name);
+}
+
+/**
  * Add a button config element
  * @param {string} name property name
  * @param {(ev:Event)=>void} onclick onClick callback
@@ -188,3 +225,13 @@ function updateBool(name) {
 	let prop = configProperties[name];
 	prop.element.value = prop.value;
 }
+
+/**
+ * Update a choice property display
+ * @param {string} name property name
+ */
+function updateChoice(name) {
+	let prop = configProperties[name];
+	prop.element.value = prop.value;
+}
+
