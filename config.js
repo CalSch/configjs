@@ -190,6 +190,28 @@ function addButton(name,onclick) {
 	configContainer.appendChild(el);
 }
 
+/** Add a label element
+ * @param {string} name
+ * @param {string} text
+ */
+function addLabel(name,text) {
+	let el = document.createElement("p");
+	el.innerText = text;
+	el.name = name;
+
+	configContainer.appendChild(el);
+	
+	let prop = {
+		name,
+		onchange,
+		value: text,
+		type: "label",
+		element: el
+	}
+	configProperties[name]=prop;
+	updateLabel(name);
+}
+
 /**
  * Set a config property's value
  * @param {string} name property name
@@ -235,3 +257,11 @@ function updateChoice(name) {
 	prop.element.value = prop.value;
 }
 
+/**
+ * Update a label display
+ * @param {string} name property name
+ */
+function updateLabel(name) {
+	let prop = configProperties[name];
+	prop.element.innerText = text;
+}
