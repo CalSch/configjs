@@ -266,3 +266,11 @@ function updateLabel(name) {
 	let prop = configProperties[name];
 	prop.element.innerText = `${name}: ${prop.value}`;
 }
+
+/**
+ * Deletes a property from the database (but doesn't delete the element(s))
+ * @param {string} name property name
+ */
+function removeProperty(name) {
+	delete configProperties[name];
+}
